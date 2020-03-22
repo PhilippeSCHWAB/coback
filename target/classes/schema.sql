@@ -37,7 +37,7 @@ create table if not exists tchaine
 (
     nomdelachaine varchar(256) NOT NULL,
     shortname varchar(11) NOT NULL ,
-    accessauxchaines varchar(100) DEFAULT NULL,
+    accesauxchaines varchar(100) DEFAULT NULL,
     codeenvironnement varchar(1) NOT NULL ,
     ibmexportpath varchar(255) NOT NULL ,
     buildpath varchar(255) NOT NULL ,
@@ -61,7 +61,7 @@ create table if not exists tchaine
     PRIMARY KEY (nomdelachaine)
 );
 
-
+/*
 
 create table if not exists Taccesauxchaines
 (
@@ -109,3 +109,4 @@ create table if not exists Tserveurunix
 
     serveurunix          varchar(100)
 );
+*/

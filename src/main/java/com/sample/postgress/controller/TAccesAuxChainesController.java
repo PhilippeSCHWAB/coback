@@ -1,56 +1,71 @@
 package com.sample.postgress.controller;
 
-import com.sample.postgress.entity.TAccesAuxChaines;
-import com.sample.postgress.entity.TUser;
-import com.sample.postgress.service.TAccesAuxChainesService;
-import com.sample.postgress.service.TUserService;
-import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import com.sample.postgress.Model.TAccesAuxChaines;
+import com.sample.postgress.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/postgressTAccesAuxChaines")
+@RequestMapping("/api/bdd")
 @CrossOrigin("http://localhost:4200")
+public class TAccesAuxChainesController<accesauxchainesId> {
 
 
+    @Autowired
+    private com.sample.postgress.Repositoy.TAccesAuxChainesRepository AccesAuxChainesRepository;
 
-public class TAccesAuxChainesController {
-
-
-    @Resource
-    TAccesAuxChainesService taccesAuxChainesService;
-
-    @GetMapping(value = "/taccesAuxChainesList")
-    public List<TAccesAuxChaines> getTAccesAuxChaines() {
-        return taccesAuxChainesService.findAll();
-    }
-
-    @PostMapping(value = "/createTAccesAuxChaines")
-    public void createTAccesAuxChaines(@RequestBody TAccesAuxChaines taccesAuxChaines) {
-        taccesAuxChainesService.createTAccesAuxChaines(taccesAuxChaines);
+    @GetMapping
+    public List<TAccesAuxChaines> getAccesauxchaines(){
+        return AccesAuxChainesRepository.findAll();
     }
 
 
-
-/*
-    @PutMapping(value = "/updateTAccesAuxChaines/{id}")
-    public void updateTAccesAuxChaines(@RequestBody TAccesAuxChaines taccesAuxChaines) {
-        taccesAuxChainesService.updateTAccesAuxChaines(taccesAuxChaines);
+    @PostMapping
+    public TAccesAuxChaines createAccesauxchaines(@Valid @RequestBody TAccesAuxChaines accesauxchaines) {
+        return AccesAuxChainesRepository.save(accesauxchaines);
     }
 
 
-    @DeleteMapping("/{id}")
-    public void deleteAccesAuxChaines(@PathVariable String id) {
-        //  System.out.println("taccesAuxChainescontroler : " +id);
-        this.taccesAuxChainesService.deleteTAccesAuxChaines(id);
+
+    @PutMapping("/{accesauxchainesId}")
+    public TAccesAuxChaines saveAccesauxchaines(@Valid @RequestBody TAccesAuxChaines accesauxchaines){
+        return AccesAuxChainesRepository.save(accesauxchaines);
     }
 
-    @GetMapping("/filter/{id}")
-    public List<TAccesAuxChaines> FilteredAccesAuxChaines(@PathVariable String id) {
-        System.out.println("taccesAuxChainescontroler : " + id);
-        this.taccesAuxChainesService.FilteredTAccesAuxChaines(id);
-        return taccesAuxChainesService.FilteredTAccesAuxChaines(id);
+    /*
+    @PutMapping(value = "/{accesauxchainesId}")
+
+    public TAccesAuxChaines updateAccesAuxChaines(@PathVariable Long accesauxchainesId,
+                                                  @Valid @RequestBody TAccesAuxChaines accesauxchainesRequest) {
+        return AccesAuxChainesRepository.findById(accesauxchainesId)
+                .map(accesauxchaines -> {
+                    accesauxchaines.setAccesauxchaines(accesauxchainesRequest.getAccesauxchaines());
+                    return AccesAuxChainesRepository.save(accesauxchaines);
+                }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id " + accesauxchainesId));
+    }
 */
+/*save
+
+    @PutMapping
+    public TAccesAuxChaines updateAccesAuxChaines(@PathVariable Long accesauxchainesId,
+                                                  @Valid @RequestBody TAccesAuxChaines accesauxchainesRequest) {
+        return AccesAuxChainesRepository.findById(accesauxchainesId)
+                .map(accesauxchaines -> {
+                    accesauxchaines.setAccesauxchaines(accesauxchainesRequest.getAccesauxchaines());
+                    return AccesAuxChainesRepository.save(accesauxchaines);
+                }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id " + accesauxchainesId));
+    }
+
+    */
+
 }

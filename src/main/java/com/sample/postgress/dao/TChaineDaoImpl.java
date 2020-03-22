@@ -37,8 +37,6 @@ public class TChaineDaoImpl implements TChaineDao{
     @Override
     public void createTChain(TChaine tchaine) {
 
-         //   final String sql = "insert into tchaine(nomdelachaine, shortname, outildetest, accesauxchaines, datedernieremodification, auteurdernieremodification)" +
-
         final String sql = "insert into tchaine (nomdelachaine, shortname, accesauxchaines, codeenvironnement, ibmexportpath, buildpath ,rpmpath, langage, outildetest, version, sed, optiondecimal, optionpmml, callsed, applicationappelante, business, prod, groupe, datedecreation, auteurcreation, datedemodification, auteurdemodification)"+
 
                 " values(:tchaineNomdelachaine, :tchaineShortname, :tchaineAccesauxchaines, :tchaineCodeenvironnement, :tchaineIbmexportpath, :tchaineBuildpath ,:tchaineRpmpath, :tchaineLangage, :tchaineOutildetest, :tchaineVersion, :tchaineSed, :tchaineOptiondecimal, :tchaineOptionpmml, :tchaineCallsed, :tchaineApplicationappelante, :tchaineBusiness, :tchaineProd, :tchaineGroupe, :tchaineDatedecreation, :tchaineAuteurcreation, :tchaineDatedemodification, :tchaineAuteurdemodification)";

@@ -24,41 +24,40 @@ values('b48025','mitchum','suzanne','sm77@ggil.fr', 'pff',true,'',false,'ee','',
 
 
 
+insert into taccesauxchaines (id,created_at, updated_at,accesauxchaines)
+values(1000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Group1');
 
-insert into taccesauxchaines (id, accesauxchaines)
-values(1,'Group1');
-
-insert into taccesauxchaines (id, accesauxchaines)
-values(2,'Group2');
-
+insert into taccesauxchaines (id,created_at, updated_at,accesauxchaines)
+values(2000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Group2');
 
 
-insert into Tentity (id, entite)
-values(1,'PF');
+insert into tentity (id,created_at, updated_at, entite)
+values(1000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','PF');
 
-insert into Tentity (id, entite)
-values(2,'BPLS');
+insert into tentity (id,created_at, updated_at,  entite)
+values(2000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','BPLS');
 
 
 
+insert into toutildetest (id,created_at, updated_at, outildetest)
+values(1000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Cosby');
 
-insert into toutildetest (id, outildetest)
-values(1,'Cosby');
+insert into toutildetest (id,created_at, updated_at, outildetest)
+values(2000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Osiris');
 
-insert into toutildetest (id, outildetest)
-values(2,'Osiris')
-;
-insert into toutildetest (id, outildetest)
-values(3,'Sedbatch');
+insert into toutildetest (id ,created_at, updated_at,outildetest)
+values(3000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Sedbatch');
 
-insert into toutildetest (id, outildetest)
-values(4,'executable');
+insert into toutildetest (id ,created_at, updated_at,outildetest)
+values(4000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','executable');
 
 
-insert into Tserveurunix (id, serveurunix)
-values(1,'Serveur1');
 
-insert into Tserveurunix (id, serveurunix)
-values(2,'Serveur2');
+insert into tserveurunix (id, created_at, updated_at, serveurunix)
+values(1000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Serveur1');
+
+insert into tserveurunix (id, created_at, updated_at, serveurunix)
+values(2000,'2030-03-19 10:20:46.017000','2030-03-19 10:20:46.017000','Serveur2');
+
 
 

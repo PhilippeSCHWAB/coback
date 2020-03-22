@@ -29,7 +29,7 @@ public class TUserRowMapper implements RowMapper<TUser> {
         tuser.setServeurunix(rs.getString("Serveurunix"));
         tuser.setLoginunix(rs.getString("Loginunix"));
         tuser.setDatedecreation(rs.getTimestamp("Datedecreation"));
-     System.out.println("ddddd"+rs.getTimestamp("Datedecreation"));
+     //System.out.println("ddddd"+rs.getTimestamp("Datedecreation"));
         tuser.setAuteurcreation(rs.getString("Auteurcreation"));
 
         tuser.setDatedemodification(rs.getTimestamp("Datedemodification"));
