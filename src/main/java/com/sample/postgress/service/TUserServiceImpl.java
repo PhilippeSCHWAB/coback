@@ -1,50 +1,51 @@
 package com.sample.postgress.service;
 
 import java.util.List;
-
-import javax.annotation.Resource;
-
-
-import org.springframework.stereotype.Component;
-
-import com.sample.postgress.dao.TUserDao;
-import com.sample.postgress.entity.TUser;
+import java.util.Optional;
 
 
-    @Component
-    public class TUserServiceImpl implements TUserService{
-        @Resource
-        TUserDao tuserDao;
-        @Override
-        public List<TUser> findAll() {     return tuserDao.findAll();        }
-        @Override
-        public void createTUser(TUser tuser) {
-            tuserDao.createTUser(tuser);        }
+import com.sample.postgress.Model.TUser;
+import com.sample.postgress.Repositoy.TUserRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-        @Override
-        public void deleteUser(String UserUid) {
-            tuserDao.deleteUser(UserUid);
-        }
+@Service
+public class TUserServiceImpl implements TUserService {
 
-        @Override
-        public List<TUser> FilteredUser(String TUserIud)  {  return tuserDao.findFiltered(TUserIud) ;}
+    private TUserRepository tuserRepository;
 
 
-        @Override
-        public void updateTUser(TUser tuser) {
-            tuserDao.updateTUser(tuser);}
-
+    //constructor
+    public TUserServiceImpl(TUserRepository tuserRepository) {
+        this.tuserRepository = tuserRepository;
     }
 
-      /*
-        @Override
-        public void executeUpdateTUser(TUser tuser) {
-            tuserDao.executeUpdateTUser(tuser);
+    @Override
+    public List<TUser> findAll() {
+        return tuserRepository.findAll();
+    }
 
+    @Override
+    public Optional<TUser> FilteredUser(Long tid) {
+        return tuserRepository.findById(tid);
+    }
 
+    @Override
+    public TUser createTUser(TUser tuser) {
+        return tuserRepository.save(tuser);
+    }
 
- */
+    @Override
+    public ResponseEntity<TUser> updateTUser(Long id, com.sample.postgress.Model.TUser tuserToUpdate) {
+        return null;
+    }
 
+    @Override
+    public void deleteUser(Long tid) {
+        System.out.println("'dfdfdfd'");
+        tuserRepository.deleteById(tid);
+    }
 
+}
 
 

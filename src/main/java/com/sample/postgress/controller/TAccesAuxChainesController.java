@@ -1,14 +1,9 @@
 package com.sample.postgress.controller;
 
 
-import com.sample.postgress.Model.TAccesAuxChaines;
-import com.sample.postgress.exception.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.sample.postgress.Model.TAccesAuxChaines;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -18,8 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bdd")
 @CrossOrigin("http://localhost:4200")
-public class TAccesAuxChainesController<accesauxchainesId> {
-
+//public class TAccesAuxChainesController/*<accesauxchainesId*/> {
+public class TAccesAuxChainesController {
 
     @Autowired
     private com.sample.postgress.Repositoy.TAccesAuxChainesRepository AccesAuxChainesRepository;

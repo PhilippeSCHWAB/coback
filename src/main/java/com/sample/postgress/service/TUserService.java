@@ -1,23 +1,23 @@
 package com.sample.postgress.service;
 
+import com.sample.postgress.Model.TUser;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
-
-import com.sample.postgress.entity.TUser;
-
+import java.util.Optional;
 
 
 public interface TUserService {
 
-
     List<TUser> findAll();
 
-    void createTUser(TUser tuser);
+    Optional<TUser> FilteredUser(Long tid);
 
-    void updateTUser(TUser tuser);
+    TUser createTUser(TUser tuser);
 
-    void deleteUser(String tuid);
+    ResponseEntity<TUser> updateTUser(Long id, TUser tuserToUpdate);
 
-    List<TUser> FilteredUser(String tuid);
+    void deleteUser(Long tid);
 
 
 }

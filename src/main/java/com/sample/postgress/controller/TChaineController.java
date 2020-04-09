@@ -1,35 +1,157 @@
 package com.sample.postgress.controller;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Resource;
+
+import com.sample.postgress.Model.TChaine;
+import com.sample.postgress.Model.TChaine;
+import com.sample.postgress.service.TChaineService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sample.postgress.entity.TChaine;
 import com.sample.postgress.service.TChaineService;
 
 @RestController
-@RequestMapping("/postgresstchaine")
+@RequestMapping("/api/chaine")
 @CrossOrigin("http://localhost:4200")
-//@CrossOrigin(origins = "*")
-//@CrossOrigin("anonymous")
 public class TChaineController {
+
+
+    @Autowired
+    private com.sample.postgress.Repositoy.TChaineRepository TChaineRepository;
+
 
     @Resource
     TChaineService tchaineService;
 
-    @GetMapping("/tchaineList")
-    public List<TChaine> getTChaine(){
+    @GetMapping
+    public List<TChaine> getTChaineList(){
         return tchaineService.findAll();
     }
 
-    @PostMapping("/createtchain")
-    public void createtchain(@RequestBody TChaine tchaine) {
-        System.out.println("tchainecontroller :"+tchaine);
-        tchaineService.createTChain(tchaine);
+    @GetMapping("/{tid}")
+    public Optional<TChaine> FilteredChaine(@PathVariable long tid) {
+        System.out.println("tchainecontroler yyyy: " +tid);
+        //  this.tchaineService.FilteredChaine((int) tid);
+        return tchaineService.FilteredChaine(tid);
     }
 
-    @DeleteMapping("/{ndlc}")
-    public void deleteTChain(@PathVariable String ndlc) {
-        this.tchaineService.deleteTChaine(ndlc);
+    @PostMapping
+    public ResponseEntity<TChaine> createTchaine(@RequestBody TChaine tchaine) {
+        TChaine savedTChaine = tchaineService.createTChaine(tchaine);
+        return ResponseEntity.ok(savedTChaine);
     }
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TChaine> updateTChaine(@PathVariable Long id,@RequestBody TChaine tchaineToUpdate ) {
+        ResponseEntity<TChaine> tchaineResponse = tchaineService.updateTChaine(id,tchaineToUpdate);
+        return tchaineResponse;
+    }
+
+
+
+    @DeleteMapping("/{tid}")
+
+    public void deleteChaine(@PathVariable Long tid)
+    { System.out.println("tchainecontroler : " +tid);
+        this.tchaineService.deleteChaine(tid);
+    }
+
+
+
+/*##############    ok
+    @PostMapping
+    public TChaine createtchaine(@Valid @RequestBody TChaine tchaine) {
+        return TChaineRepository.save(tchaine);
+    }
+ */
+
+
+/*
+    @GetMapping("/filter/{tuid}")
+    public Optional<TChaine> FilteredChaine(@PathVariable long tuid) {
+        System.out.println("tchainecontroler : " +tuid);
+        this.tchaineService.FilteredChaine(tuid);
+        return tchaineService.FilteredChaine(tuid);
+    }
+
+*/
+
+/*
+    @PostMapping(value = "/createTChaine")
+    public void createTChaine(@RequestBody TChaine tchaine) {
+        tchaineService.createTChaine(tchaine);    }
+*/
+/*
+    @PostMapping
+    public TChaine createTChaine(@Valid @RequestBody TChaine tchaine) {
+        return TChaineRepository.save(tchaine);
+    }
+
+
+    @PutMapping(value = "/updateTChaine/{tuid}")
+    public void updateTChaine(@RequestBody TChaine tchaine) {
+        tchaineService.updateTChaine(tchaine);    }
+
+
+  @DeleteMapping("/{tuid}")
+    public void deleteChaine(@PathVariable String tuid) {
+      //  System.out.println("tchainecontroler : " +tuid);
+        this.tchaineService.deleteChaine(tuid);
+    }
+
+/*
+
+
+    @GetMapping("/filter")
+    public List<TChaine> getFilteredChaineList(@RequestParam String iudSelectedForm) {
+        System.out.println("tchainecontroler : " +iudSelectedForm);
+        return tchaineService.getFilteredChaineList(iudSelectedForm);
+    }
+    */
+/*
+    @PostMapping
+    public ResponseEntity<TChaine> createTChaine(/*@Valid @RequestBody*/ /*TChaine tchaineToCreate) {
+        TChaine savedTChaine = tchaineService.createTChaine(tchaineToCreate);
+        System.out.println("XXXX :" +   savedTChaine.getIud());
+        return ResponseEntity.ok(savedTChaine);
+
+    }
+
+    */
+
+
+    // /postgressTlist/tchaineList"
+
+
+
+/*
+    @GetMapping("/filter")
+    public List<TChaine> getFilteredChaineList(@RequestParam String iudSelectedForm) {
+        System.out.println("tchainecontroler : " +iudSelectedForm);
+           return tchaineService.getFilteredChaineList(iudSelectedForm);
+}
+*/
+
+     /*
+    @PutMapping(value = "/executeUpdateTChaine")
+    public void executeUpdateTChaine(@RequestBody TChaine tchaine) {
+        tchaineService.executeUpdateTChaine(tchaine);
+
+    }
+
+
+    @DeleteMapping(value = "/deleteTChaineById")
+    public void deleteTChaine(@RequestBody TChaine tchaine) {
+        tchaineService.deleteTChaine(tchaine);
+*/
+/*
+        @DeleteMapping(value = "/deleteTChaineById/{tiud}")
+        public void deleteTChaine(@PathVariable String tuid) {
+            this.tchaineService.deleteTChaine(tuid);
+*/
 
 
 }

@@ -1,12 +1,12 @@
 CREATE TABLE employee
 (
- employeeName varchar(100) NOT NULL,
-  employeeId varchar(11) NOT NULL ,
- employeeAddress varchar(100) DEFAULT NULL,
- employeeEmail varchar(100) DEFAULT NULL,
- PRIMARY KEY (employeeId)
+    employeeName    varchar(100) NOT NULL,
+    employeeId      varchar(11)  NOT NULL,
+    employeeAddress varchar(100) DEFAULT NULL,
+    employeeEmail   varchar(100) DEFAULT NULL,
+    PRIMARY KEY (employeeId)
 );
-
+/*
 create table if not exists tuser
 (
 
@@ -31,10 +31,11 @@ create table if not exists tuser
     refmyaccess          integer not null
 );
 
-
-
+*/
+/*
 create table if not exists tchaine
 (
+    id integer NOT NULL,
     nomdelachaine varchar(256) NOT NULL,
     shortname varchar(11) NOT NULL ,
     accesauxchaines varchar(100) DEFAULT NULL,

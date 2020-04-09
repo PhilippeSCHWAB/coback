@@ -1,21 +1,26 @@
 package com.sample.postgress.service;
-import com.sample.postgress.entity.TChaine;
+
+
+import com.sample.postgress.Model.TChaine;
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TChaineService {
 
 
     List<TChaine> findAll();
 
-    void createTChain(TChaine tchaine);
-/*
-    void updateTChaine(TChaine tchaine);
+    Optional<TChaine> FilteredChaine(Long tid);
 
-    void executeUpdateTChaine(TChaine tchaine);
-*/
-    void deleteTChaine(String ndlc);
+    TChaine createTChaine(TChaine tchaine);
+
+    ResponseEntity<TChaine> updateTChaine(Long id, TChaine tchaineToUpdate);
+
+    void deleteChaine(Long tid);
+
 
 }
 

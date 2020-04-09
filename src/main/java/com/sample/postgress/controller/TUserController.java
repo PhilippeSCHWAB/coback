@@ -1,26 +1,93 @@
 package com.sample.postgress.controller;
+
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Resource;
+
+import com.sample.postgress.Model.TUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sample.postgress.entity.TUser;
 import com.sample.postgress.service.TUserService;
 
 @RestController
-@RequestMapping("/postgressTlist")
+@RequestMapping("/api/user")
 @CrossOrigin("http://localhost:4200")
 public class TUserController {
+
+
+    @Autowired
+    private com.sample.postgress.Repositoy.TUserRepository TUserRepository;
+
 
     @Resource
     TUserService tuserService;
 
-    @GetMapping(value = "/tuserList")
-    public List<TUser> getTUser(){
-    		return tuserService.findAll();
+   @GetMapping
+    public List<TUser> getTUserList(){
+       return tuserService.findAll();
     }
 
+    @GetMapping("/{tid}")
+    public Optional<TUser> FilteredUser(@PathVariable long tid) {
+        System.out.println("tusercontroler yyyy: " +tid);
+      //  this.tuserService.FilteredUser((int) tid);
+        return tuserService.FilteredUser(tid);
+    }
+
+    @PostMapping
+    public ResponseEntity<TUser> createTuser(@RequestBody TUser tuser) {
+            TUser savedTUser = tuserService.createTUser(tuser);
+        return ResponseEntity.ok(savedTUser);
+    }
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TUser> updateTUser(@PathVariable Long id,@RequestBody TUser tuserToUpdate ) {
+        ResponseEntity<TUser> tuserResponse = tuserService.updateTUser(id,tuserToUpdate);
+        return tuserResponse;
+    }
+
+
+
+    @DeleteMapping("/{tid}")
+
+    public void deleteUser(@PathVariable Long tid)
+    { System.out.println("tusercontroler : " +tid);
+        this.tuserService.deleteUser(tid);
+    }
+
+
+
+/*##############    ok
+    @PostMapping
+    public TUser createtuser(@Valid @RequestBody TUser tuser) {
+        return TUserRepository.save(tuser);
+    }
+ */
+
+
+/*
+    @GetMapping("/filter/{tuid}")
+    public Optional<TUser> FilteredUser(@PathVariable long tuid) {
+        System.out.println("tusercontroler : " +tuid);
+        this.tuserService.FilteredUser(tuid);
+        return tuserService.FilteredUser(tuid);
+    }
+
+*/
+
+/*
     @PostMapping(value = "/createTUser")
     public void createTUser(@RequestBody TUser tuser) {
         tuserService.createTUser(tuser);    }
+*/
+/*
+    @PostMapping
+    public TUser createTUser(@Valid @RequestBody TUser tuser) {
+        return TUserRepository.save(tuser);
+    }
 
 
     @PutMapping(value = "/updateTUser/{tuid}")
@@ -34,12 +101,26 @@ public class TUserController {
         this.tuserService.deleteUser(tuid);
     }
 
-    @GetMapping("/filter/{tuid}")
-    public List<TUser> FilteredUser(@PathVariable String tuid) {
-       System.out.println("tusercontroler : " +tuid);
-        this.tuserService.FilteredUser(tuid);
-            return tuserService.FilteredUser(tuid);
-        }
+/*
+
+
+    @GetMapping("/filter")
+    public List<TUser> getFilteredUserList(@RequestParam String iudSelectedForm) {
+        System.out.println("tusercontroler : " +iudSelectedForm);
+        return tuserService.getFilteredUserList(iudSelectedForm);
+    }
+    */
+/*
+    @PostMapping
+    public ResponseEntity<TUser> createTUser(/*@Valid @RequestBody*/ /*TUser tuserToCreate) {
+        TUser savedTUser = tuserService.createTUser(tuserToCreate);
+        System.out.println("XXXX :" +   savedTUser.getIud());
+        return ResponseEntity.ok(savedTUser);
+
+    }
+
+    */
+
 
     // /postgressTlist/tuserList"
 

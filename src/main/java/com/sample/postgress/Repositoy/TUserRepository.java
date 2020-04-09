@@ -1,22 +1,16 @@
-
-
-/*
 package com.sample.postgress.Repositoy;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sample.postgress.entity.TUser;
+import com.sample.postgress.Model.TUser;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
-    public interface TUserRepository extends JpaRepository<TUser>,{
-
-        @Query("SELECT DISTINCT tuser FROM Tuser tuser  where reviews.note >= :lowest and reviews.note <= :highest")
-        List<TUser> findAllByReviewsNoteBetween(Integer lowest, Integer highest);
-
-    }
-*/
-
-
+public interface TUserRepository extends JpaRepository<TUser, Long> {
+  //  List<TUser> findFiltered(String tUserIud);
+   /*
+    @Query("SELECT tuser from TUser tuser WHERE tuser.iud= :TUserIud")
+    List<TUser> findFiltered(String iud);
+    */
+}

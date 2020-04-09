@@ -26,15 +26,15 @@ public class TServeurUnixController<tserveurUnixId> {
 
 
     @PostMapping
-    public TServeurUnix createServeurUnix(@Valid @RequestBody TServeurUnix tentity) {
-        return TServeurUnixRepository.save(tentity);
+    public TServeurUnix createServeurUnix(@Valid @RequestBody TServeurUnix tserveurunix) {
+        return TServeurUnixRepository.save(tserveurunix);
     }
 
 
 
     @PutMapping("/{tserveurunixId}")
-    public TServeurUnix saveServeurUnix(@Valid @RequestBody TServeurUnix tentity){
-        return TServeurUnixRepository.save(tentity);
+    public TServeurUnix saveServeurUnix(@Valid @RequestBody TServeurUnix tserveurunix){
+        return TServeurUnixRepository.save(tserveurunix);
     }
 
 
