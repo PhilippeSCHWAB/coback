@@ -1,3 +1,4 @@
+
 insert into tchaine (id, nomdelachaine, shortname, accesauxchaines, codeenvironnement, ibmexportpath, buildpath,
                      rpmpath, langage, outildetest, version, sed, optiondecimal, optionpmml, callsed,
                      applicationappelante, business, prod, groupe, datedecreation, auteurcreation, datedemodification,
@@ -10,24 +11,24 @@ values (1, 'aaaa', 'short', 'gjghjghj', 'a', 'ibmexportpath', 'buildpath', 'rpmp
 
 insert into tuser (id, iud, nom, prenom, email, entite, ismanager, emailmanager, isadmin, accesauxchaines, serveurunix,
                    loginunix, datedecreation, auteurcreation, datedemodification, auteurdemodification, refmyaccess)
-values (1, 'b48022', 'schwab', 'philippe', 'ps77@ggil.fr', 'pf', true, '', false, 'ee', '', false, '2020-02-24 8:00',
+values (1, 'b48022', 'schwab', 'philippe', 'ps77@ggil.fr', 'pf', true, '', false, 'ee', 'servu', false, '2020-02-24 8:00',
         'psc', '2020-02-20 8:45', 'psc2', '000');
 
 insert into tuser (id, iud, nom, prenom, email, entite, ismanager, emailmanager, isadmin, accesauxchaines, serveurunix,
                    loginunix, datedecreation, auteurcreation, datedemodification, auteurdemodification, refmyaccess)
-values (2, 'b48023', 'schwab', 'philippe', 'ps77@ggil.fr', 'pf', true, '', false, 'ee', '', false, '2020-03-09T10:29',
+values (2, 'b48023', 'schwab', 'philippe', 'ps77@ggil.fr', 'pf', true, '', false, 'ee', 'servu', false, '2020-03-09T10:29',
         'psc', '2020-03-09T10:29', 'psc2', '000');
 
 
 
 insert into tuser (id, iud, nom, prenom, email, entite, ismanager, emailmanager, isadmin, accesauxchaines, serveurunix,
                    loginunix, datedecreation, auteurcreation, datedemodification, auteurdemodification, refmyaccess)
-values (3, 'b48024', 'wayne', 'pierre', 'pw77@ggil.fr', 'pf', true, '', false, 'ee', '', false, '2020-02-24 8:00',
+values (3, 'b48024', 'wayne', 'pierre', 'pw77@ggil.fr', 'pf', true, '', false, 'ee', 'servu', false, '2020-02-24 8:00',
         'psc', '2020-02-20 8:45', 'psc2', '000');
 
 insert into tuser (id, iud, nom, prenom, email, entite, ismanager, emailmanager, isadmin, accesauxchaines, serveurunix,
                    loginunix, datedecreation, auteurcreation, datedemodification, auteurdemodification, refmyaccess)
-values (4, 'b48025', 'mitchum', 'suzanne', 'sm77@ggil.fr', 'pff', true, '', false, 'ee', '', true, '2021-03-09T10:29',
+values (4, 'b48025', 'mitchum', 'suzanne', 'sm77@ggil.fr', 'pff', true, '', false, 'ee', 'servu', true, '2021-03-09T10:29',
         'psc', '2020-03-09T10:29', 'psc2', '000');
 
 

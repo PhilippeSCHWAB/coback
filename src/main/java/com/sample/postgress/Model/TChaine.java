@@ -1,9 +1,11 @@
 package com.sample.postgress.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -11,48 +13,115 @@ import java.util.Objects;
 public class TChaine {
 
     @Id
-    @GeneratedValue(generator = "tchaine_generator")
-    @SequenceGenerator(
-            name = "tchaine_generator",
-            sequenceName = "tchaine_sequence",
-            initialValue = 1
+    @GeneratedValue
+    private Integer id;
+    private String nomdelachaine;
+    private String shortname;
+    private String accesauxchaines;
+    private String codeenvironnement;
+    private String ibmexportpath;
+    private String buildpath;
+    private String rpmpath;
+    private String langage;
+    private String outildetest;
+    private String version;
+    private String sed;
+    private Boolean optiondecimal;
+    private Boolean optionpmml;
+    private String callsed;
+    private String applicationappelante;
+    private String business;
+    private Boolean prod;
+    private String groupe;
+    private Timestamp datedecreation;
+    private String auteurcreation;
+    private Timestamp datedemodification;
+    private String auteurdemodification;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "tchaines", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<TUser> tusers = new HashSet<>();
+
+
+ /*   @JoinTable(
+            name = "tuser_group",
+            joinColumns = @JoinColumn(name = "tuser_id")
+            //inverseJoinColumns = @JoinColumn(name = "groupm_id")
     )
-    private Long id;
-    @NotBlank
+*/
 
-    String nomdelachaine;
-    String shortname;
-    String accesauxchaines;
-    String codeenvironnement;
-    String ibmexportpath;
-    String buildpath;
-    String rpmpath;
-    String langage;
-    String outildetest;
-    String version;
-    String sed;
-    Boolean optiondecimal;
-    Boolean optionpmml;
-    String callsed;
-    String applicationappelante;
-    String business;
-    Boolean prod;
-    String groupe;
-    Timestamp datedecreation;
-    String auteurcreation;
-    Timestamp datedemodification;
-    String auteurdemodification;
 
-    public String getNomdelachaine() {
-        return nomdelachaine;
+    public TChaine() {
     }
 
-    public Long getId() {
+    public TChaine(Integer id, String nomdelachaine, String shortname, String accesauxchaines, String codeenvironnement, String ibmexportpath,
+                   String buildpath, String rpmpath, String langage, String outildetest, String version, String sed, Boolean optiondecimal,
+                   Boolean optionpmml, String callsed, String applicationappelante, String business, Boolean prod, String groupe,
+                   Timestamp datedecreation, String auteurcreation, Timestamp datedemodification, String auteurdemodification) {
+        this.id = id;
+        this.nomdelachaine = nomdelachaine;
+        this.shortname = shortname;
+        this.accesauxchaines = accesauxchaines;
+        this.codeenvironnement = codeenvironnement;
+        this.ibmexportpath = ibmexportpath;
+        this.buildpath = buildpath;
+        this.rpmpath = rpmpath;
+        this.langage = langage;
+        this.outildetest = outildetest;
+        this.version = version;
+        this.sed = sed;
+        this.optiondecimal = optiondecimal;
+        this.optionpmml = optionpmml;
+        this.callsed = callsed;
+        this.applicationappelante = applicationappelante;
+        this.business = business;
+        this.prod = prod;
+        this.groupe = groupe;
+        this.datedecreation = datedecreation;
+        this.auteurcreation = auteurcreation;
+        this.datedemodification = datedemodification;
+        this.auteurdemodification = auteurdemodification;
+    }
+//getters and setters
+
+    public TChaine(String nomdelachaine, String shortname, String accesauxchaines, String codeenvironnement, String ibmexportpath,
+                   String buildpath, String rpmpath, String langage, String outildetest, String version, String sed, Boolean optiondecimal,
+                   Boolean optionpmml, String callsed, String applicationappelante, String business, Boolean prod, String groupe,
+                   Timestamp datedecreation, String auteurcreation, Timestamp datedemodification, String auteurdemodification) {
+        this.nomdelachaine = nomdelachaine;
+        this.shortname = shortname;
+        this.accesauxchaines = accesauxchaines;
+        this.codeenvironnement = codeenvironnement;
+        this.ibmexportpath = ibmexportpath;
+        this.buildpath = buildpath;
+        this.rpmpath = rpmpath;
+        this.langage = langage;
+        this.outildetest = outildetest;
+        this.version = version;
+        this.sed = sed;
+        this.optiondecimal = optiondecimal;
+        this.optionpmml = optionpmml;
+        this.callsed = callsed;
+        this.applicationappelante = applicationappelante;
+        this.business = business;
+        this.prod = prod;
+        this.groupe = groupe;
+        this.datedecreation = datedecreation;
+        this.auteurcreation = auteurcreation;
+        this.datedemodification = datedemodification;
+        this.auteurdemodification = auteurdemodification;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNomdelachaine() {
+        return nomdelachaine;
     }
 
     public void setNomdelachaine(String nomdelachaine) {
@@ -225,5 +294,46 @@ public class TChaine {
 
     public void setAuteurdemodification(String auteurdemodification) {
         this.auteurdemodification = auteurdemodification;
+    }
+
+
+
+    public Set<TUser> getTUsers() {
+        return tusers;
+    }
+
+
+    public void addTUser(TUser tuser) {
+        tusers.add(tuser);
+        tuser.getTChaines().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "TChaine{" +
+                "id=" + id +
+                ", nomdelachaine='" + nomdelachaine + '\'' +
+                ", shortname='" + shortname + '\'' +
+                ", accesauxchaines='" + accesauxchaines + '\'' +
+                ", codeenvironnement='" + codeenvironnement + '\'' +
+                ", ibmexportpath='" + ibmexportpath + '\'' +
+                ", buildpath='" + buildpath + '\'' +
+                ", rpmpath='" + rpmpath + '\'' +
+                ", langage='" + langage + '\'' +
+                ", outildetest='" + outildetest + '\'' +
+                ", version='" + version + '\'' +
+                ", sed='" + sed + '\'' +
+                ", optiondecimal=" + optiondecimal +
+                ", optionpmml=" + optionpmml +
+                ", callsed='" + callsed + '\'' +
+                ", applicationappelante='" + applicationappelante + '\'' +
+                ", business='" + business + '\'' +
+                ", prod=" + prod +
+                ", groupe='" + groupe + '\'' +
+                ", datedecreation=" + datedecreation +
+                ", auteurcreation='" + auteurcreation + '\'' +
+                ", datedemodification=" + datedemodification +
+                ", auteurdemodification='" + auteurdemodification + '\'' +
+                '}';
     }
 }

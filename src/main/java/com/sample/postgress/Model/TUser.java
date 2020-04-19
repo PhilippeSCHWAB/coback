@@ -1,49 +1,107 @@
 package com.sample.postgress.Model;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tuser")
 public class TUser /*extends AuditModel*/ {
     @Id
-    @GeneratedValue(generator = "tuser_generator")
-    @SequenceGenerator(
-            name = "tuser_generator",
-            sequenceName = "tuser_sequence",
-            initialValue = 10
-    )
-    private Long id;
-    @NotBlank
+    @GeneratedValue
+    private Integer id;
+    private  String iud;
+    private String nom;
+    private   String prenom;
+    private  String email;
+    private  String entite;
+    private Boolean ismanager;
+    private String emailmanager;
+    private  Boolean isadmin;
+    private  String accesauxchaines;
+    private  String serveurunix;
+    private String loginunix;
+    private Timestamp datedecreation;
+    private String auteurcreation;
+    private  Timestamp datedemodification;
+    private  String auteurdemodification;
+    private  Integer refmyaccess;
 
-    String iud;
-    String nom;
-    String prenom;
-    String email;
-    String entite;
-    Boolean ismanager;
-    String emailmanager;
-    Boolean isadmin;
-    String accesauxchaines;
-    String serveurunix;
-    String loginunix;
-    Timestamp datedecreation;
-    String auteurcreation;
-    Timestamp datedemodification;
-    String auteurdemodification;
-    Integer refmyaccess;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "tuser_tchaine",
+            joinColumns = @JoinColumn(name = "tuser_id"),
+            inverseJoinColumns = @JoinColumn(name = "tchaine_id")
+    )
+
+    private Set<TChaine> tchaines = new HashSet<>();
+
+
+    public TUser() {
+    }
+
+
+    public TUser(Integer id, String iud, String nom, String prenom, String email, String entite, Boolean ismanager, String emailmanager,
+                 Boolean isadmin, String accesauxchaines, String serveurunix, String loginunix, Timestamp datedecreation,
+                 String auteurcreation, Timestamp datedemodification, String auteurdemodification, Integer refmyaccess) {
+        this.id = id;
+        this.iud = iud;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.entite = entite;
+        this.ismanager = ismanager;
+        this.emailmanager = emailmanager;
+        this.isadmin = isadmin;
+        this.accesauxchaines = accesauxchaines;
+        this.serveurunix = serveurunix;
+        this.loginunix = loginunix;
+        this.datedecreation = datedecreation;
+        this.auteurcreation = auteurcreation;
+        this.datedemodification = datedemodification;
+        this.auteurdemodification = auteurdemodification;
+        this.refmyaccess = refmyaccess;
+         }
+
 
 
 // Getters and Setters (Omitted for brevity)
 
 
-    public Long getId() {
+    public TUser( String iud, String nom, String prenom, String email, String entite, Boolean ismanager, String emailmanager,
+                 Boolean isadmin, String accesauxchaines, String serveurunix, String loginunix, Timestamp datedecreation,
+                 String auteurcreation, Timestamp datedemodification, String auteurdemodification, Integer refmyaccess) {
+        this.iud = iud;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.entite = entite;
+        this.ismanager = ismanager;
+        this.emailmanager = emailmanager;
+        this.isadmin = isadmin;
+        this.accesauxchaines = accesauxchaines;
+        this.serveurunix = serveurunix;
+        this.loginunix = loginunix;
+        this.datedecreation = datedecreation;
+        this.auteurcreation = auteurcreation;
+        this.datedemodification = datedemodification;
+        this.auteurdemodification = auteurdemodification;
+        this.refmyaccess = refmyaccess;
+    }
+
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -171,7 +229,47 @@ public class TUser /*extends AuditModel*/ {
         return refmyaccess;
     }
 
+    public void setTchaines(Set<TChaine> tchaines) {
+        this.tchaines = tchaines;
+    }
+
     public void setRefmyaccess(Integer refmyaccess) {
         this.refmyaccess = refmyaccess;
     }
+
+
+    public Set<TChaine> getTChaines() {
+        return tchaines;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "TUser{" +
+                "idaffiché=" + id +
+                ", iud='" + iud + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", entite='" + entite + '\'' +
+                ", ismanager=" + ismanager +
+                ", emailmanager='" + emailmanager + '\'' +
+                ", isadmin=" + isadmin +
+                ", accesauxchaines='" + accesauxchaines + '\'' +
+                ", serveurunix='" + serveurunix + '\'' +
+                ", loginunix='" + loginunix + '\'' +
+                ", datedecreation=" + datedecreation +
+                ", auteurcreation='" + auteurcreation + '\'' +
+                ", datedemodification=" + datedemodification +
+                ", auteurdemodification='" + auteurdemodification + '\'' +
+                ", refmyaccess=" + refmyaccess + '\'' +
+                 ", tchaines=" + tchaines + '\'' +
+                ", tchaines='" + tchaines.stream().map(TChaine::getAccesauxchaines).collect(Collectors.toList()) + '\'' +
+                '}';
+    }
+
+
+
+
 }

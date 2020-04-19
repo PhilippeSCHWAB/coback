@@ -3,13 +3,15 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
 
+
 import com.sample.postgress.Model.TChaine;
-import com.sample.postgress.Model.TChaine;
+import com.sample.postgress.Model.TChaineToUser;
+import com.sample.postgress.Repositoy.TChaineRepository;
 import com.sample.postgress.service.TChaineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sample.postgress.service.TChaineService;
+
 
 @RestController
 @RequestMapping("/api/chaine")
@@ -18,7 +20,7 @@ public class TChaineController {
 
 
     @Autowired
-    private com.sample.postgress.Repositoy.TChaineRepository TChaineRepository;
+    private TChaineRepository TChaineRepository;
 
 
     @Resource
@@ -59,6 +61,13 @@ public class TChaineController {
         this.tchaineService.deleteChaine(tid);
     }
 
+
+
+
+    @PostMapping(value = "/createchaintouser")
+    public void createTChaineToUser(TChaineToUser tchainetouser) {
+        System.out.println("TChaineToUser : " +tchainetouser);
+        tchaineService.createTChaineToUSer(tchainetouser);    }
 
 
 /*##############    ok

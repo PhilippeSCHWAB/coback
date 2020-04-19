@@ -1,32 +1,43 @@
 package com.sample.postgress.controller;
 
-import java.util.List;
-import java.util.Optional;
-import javax.annotation.Resource;
-
-import com.sample.postgress.Model.TUser;
+import com.sample.postgress.Model.Movie;
+import com.sample.postgress.Repositoy.MovieRepository;
+import com.sample.postgress.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sample.postgress.service.TUserService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/movie")
 @CrossOrigin("http://localhost:4200")
-public class TUserController {
+public class TMovieController {
 
 
     @Autowired
-    private com.sample.postgress.Repositoy.TUserRepository TUserRepository;
+    private MovieRepository MovieRepository;
 
 
     @Resource
-    TUserService tuserService;
+    MovieService movieservice;
+
 
    @GetMapping
-    public List<TUser> getTUserList(){
-       return tuserService.findAll();
+    public List<Movie> getTUserList(){
+       return movieservice.findAll();
     }
+
+
+    @PostMapping
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+        Movie savedMovie = movieservice.createMovie(movie);
+        return ResponseEntity.ok(savedMovie);
+    }
+
+
+/*
 
     @GetMapping("/{tid}")
     public Optional<TUser> FilteredUser(@PathVariable long tid) {
@@ -37,7 +48,6 @@ public class TUserController {
 
     @PostMapping
     public ResponseEntity<TUser> createTuser(@RequestBody TUser tuser) {
-        System.out.println("@PostMapping zzzz: " +tuser);
             TUser savedTUser = tuserService.createTUser(tuser);
         return ResponseEntity.ok(savedTUser);
     }
@@ -59,7 +69,7 @@ public class TUserController {
         this.tuserService.deleteUser(tid);
     }
 
-
+*/
 
 /*##############    ok
     @PostMapping

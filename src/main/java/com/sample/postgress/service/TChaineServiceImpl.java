@@ -2,9 +2,9 @@ package com.sample.postgress.service;
 
 
 import com.sample.postgress.Model.TChaine;
-import com.sample.postgress.Model.TChaine;
+import com.sample.postgress.Model.TChaineToUser;
 import com.sample.postgress.Repositoy.TChaineRepository;
-import com.sample.postgress.Repositoy.TChaineRepository;
+import com.sample.postgress.Repositoy.TChaineToUserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,12 @@ import java.util.Optional;
 public class TChaineServiceImpl implements TChaineService {
 
     private TChaineRepository tchaineRepository;
-
+    private TChaineToUserRepository tchainetouserRepository;
 
     //constructor
-    public TChaineServiceImpl(TChaineRepository tchaineRepository) {
+    public TChaineServiceImpl(TChaineRepository tchaineRepository, TChaineToUserRepository tchainetouserRepository) {
         this.tchaineRepository = tchaineRepository;
+        this.tchainetouserRepository = tchainetouserRepository;
     }
 
     @Override
@@ -49,6 +50,17 @@ public class TChaineServiceImpl implements TChaineService {
         tchaineRepository.deleteById(tid);
     }
 
+    @Override
+    public TChaineToUser createTChaineToUSer(TChaineToUser tchainetouser) {
+        return tchainetouserRepository.save(tchainetouser);
+    }
+
+/*
+    @Override
+    public TChaineToUser createTChaineToUser(TChaineToUser tchainetouser) {
+        return tchainetouserRepository.save(tchainetouser);
+    }
+*/
 }
 
 

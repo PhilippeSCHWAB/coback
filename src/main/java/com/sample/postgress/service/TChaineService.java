@@ -2,6 +2,7 @@ package com.sample.postgress.service;
 
 
 import com.sample.postgress.Model.TChaine;
+import com.sample.postgress.Model.TChaineToUser;
 import org.springframework.http.ResponseEntity;
 
 
@@ -21,6 +22,7 @@ public interface TChaineService {
 
     void deleteChaine(Long tid);
 
+    TChaineToUser createTChaineToUSer(TChaineToUser tchainetouser);
 
 }
 
