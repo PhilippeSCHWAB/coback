@@ -1,25 +1,25 @@
 package com.sample.postgress.service;
 
-import com.sample.postgress.entity.TEntity;
+import com.sample.postgress.Model.TEntity;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
-public  interface TEntityService {
 
+public interface TEntityService {
 
     List<TEntity> findAll();
 
-    void createTUser(TEntity tentity);
+    Optional<TEntity> FilteredTEntity(Long tid);
 
-    void updateTUser(TEntity tentity);
+    ResponseEntity<TEntity> updateTEntity(Long id, TEntity tentityToUpdate);
 
-    void deleteUser(String id);
+    void deleteTEntity(Long tid);
 
-    List<TEntity> FilteredUser(String id);
+    TEntity save(TEntity tentity);
 
-
-
-
+    List<String> getEntite();
 
 
 }

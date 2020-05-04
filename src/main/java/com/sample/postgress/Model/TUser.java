@@ -3,11 +3,9 @@ package com.sample.postgress.Model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tuser")
@@ -33,14 +31,14 @@ public class TUser /*extends AuditModel*/ {
     private  Integer refmyaccess;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "tuser_tchaine",
             joinColumns = @JoinColumn(name = "tuser_id"),
             inverseJoinColumns = @JoinColumn(name = "tchaine_id")
     )
 
-    private Set<TChaine> tchaines = new HashSet<>();
+    private Set<TChain> tchaines = new HashSet<>();
 
 
     public TUser() {
@@ -229,7 +227,7 @@ public class TUser /*extends AuditModel*/ {
         return refmyaccess;
     }
 
-    public void setTchaines(Set<TChaine> tchaines) {
+    public void setTchaines(Set<TChain> tchaines) {
         this.tchaines = tchaines;
     }
 
@@ -238,7 +236,7 @@ public class TUser /*extends AuditModel*/ {
     }
 
 
-    public Set<TChaine> getTChaines() {
+    public Set<TChain> getTChaines() {
         return tchaines;
     }
 
@@ -265,7 +263,7 @@ public class TUser /*extends AuditModel*/ {
                 ", auteurdemodification='" + auteurdemodification + '\'' +
                 ", refmyaccess=" + refmyaccess + '\'' +
                  ", tchaines=" + tchaines + '\'' +
-                ", tchaines='" + tchaines.stream().map(TChaine::getAccesauxchaines).collect(Collectors.toList()) + '\'' +
+           //     ", tchaines='" + tchaines.stream().map(TChaine::getAccesauxchaines).collect(Collectors.toList()) + '\'' +
                 '}';
     }
 

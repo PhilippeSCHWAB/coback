@@ -11,13 +11,13 @@ public interface TUserService {
 
     List<TUser> findAll();
 
-    Optional<TUser> FilteredUser(Long tid);
+    Optional<TUser> getFilteredUser(int tid);
 
     TUser createTUser(TUser tuser);
 
-    ResponseEntity<TUser> updateTUser(Long id, TUser tuserToUpdate);
+    ResponseEntity<TUser> updateTUser(int id, TUser tuserToUpdate);
 
-    void deleteUser(Long tid);
+    void deleteTUser(int tid);
 
 
 }

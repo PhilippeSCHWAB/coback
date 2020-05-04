@@ -1,3 +1,8 @@
+
+/**
+ * This class CONTROLLER allows the CRUD on the main table <b>tchain</b>
+ */
+
 package com.sample.postgress.controller;
 
 import java.util.List;
@@ -29,10 +34,10 @@ public class TUserController {
     }
 
     @GetMapping("/{tid}")
-    public Optional<TUser> FilteredUser(@PathVariable long tid) {
+    public Optional<TUser> getFilteredUser(@PathVariable int tid) {
         System.out.println("tusercontroler yyyy: " +tid);
       //  this.tuserService.FilteredUser((int) tid);
-        return tuserService.FilteredUser(tid);
+        return tuserService.getFilteredUser(tid);
     }
 
     @PostMapping
@@ -45,7 +50,7 @@ public class TUserController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<TUser> updateTUser(@PathVariable Long id,@RequestBody TUser tuserToUpdate ) {
+    public ResponseEntity<TUser> updateTUser(@PathVariable int id,@RequestBody TUser tuserToUpdate ) {
         ResponseEntity<TUser> tuserResponse = tuserService.updateTUser(id,tuserToUpdate);
         return tuserResponse;
     }
@@ -53,13 +58,18 @@ public class TUserController {
 
 
     @DeleteMapping("/{tid}")
-
-    public void deleteUser(@PathVariable Long tid)
+    public void deleteTUser(@PathVariable int tid)
     { System.out.println("tusercontroler : " +tid);
-        this.tuserService.deleteUser(tid);
+        this.tuserService.deleteTUser(tid);
     }
 
-
+    /*
+    @GetMapping("/filter")
+    public Optional<TUser> getFilteredUser(@RequestParam int iudSelectedForm) {
+        System.out.println("tusercontroler : " +iudSelectedForm);
+        return tuserService.getFilteredUser(iudSelectedForm);
+    }
+*/
 
 /*##############    ok
     @PostMapping

@@ -26,7 +26,8 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public Optional<TUser> FilteredUser(Long tid) {
+    public Optional<TUser> getFilteredUser(int tid) {
+        System.out.println("tuserserviceimpl : "+ tuserRepository.findById(tid));
         return tuserRepository.findById(tid);
     }
 
@@ -36,12 +37,12 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public ResponseEntity<TUser> updateTUser(Long id, com.sample.postgress.Model.TUser tuserToUpdate) {
+    public ResponseEntity<TUser> updateTUser(int id, com.sample.postgress.Model.TUser tuserToUpdate) {
         return null;
     }
 
     @Override
-    public void deleteUser(Long tid) {
+    public void deleteTUser(int tid) {
         System.out.println("'dfdfdfd'");
         tuserRepository.deleteById(tid);
     }
