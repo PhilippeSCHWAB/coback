@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tserveurunix")
 public class TUnixServer extends AuditModel {
+
+
+
     @Id
     @GeneratedValue(generator = "serveurunix_generator")
     @SequenceGenerator(
@@ -16,13 +19,20 @@ public class TUnixServer extends AuditModel {
             initialValue = 1000
     )
     private Long id;
-
     @NotBlank
     @Size(min = 3, max = 100)
 
-
     @Column(columnDefinition = "text")
     private String serveurunix;
+
+
+
+    public TUnixServer() {
+    }
+
+    public TUnixServer(String tUnixServeur) {
+        this.serveurunix = serveurunix;
+    }
 
 
     // Getters and Setters (Omitted for brevity)

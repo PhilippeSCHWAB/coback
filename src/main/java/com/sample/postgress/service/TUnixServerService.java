@@ -24,5 +24,9 @@ public interface TUnixServerService {
 
 
     List<String> getServeurunix();
+    public TUnixServer getTUnixServerByName(String tserveurunix);
+    public boolean exists(String email);
+    public TUnixServer getTUnixServerById(Long id);
+
 }
 

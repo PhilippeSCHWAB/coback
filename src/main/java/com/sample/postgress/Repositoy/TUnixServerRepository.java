@@ -18,6 +18,7 @@ public interface TUnixServerRepository extends JpaRepository<TUnixServer, Long> 
     List<String> findAllServeurunix();
 
 
+    public TUnixServer findByserveurunix(String serveurunix);
 
 }
 
