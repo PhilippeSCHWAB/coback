@@ -47,22 +47,22 @@ public class TUnixServerControllerIntegrationTest {
         TUnixServer alex = new TUnixServer("alex");
         given(service.save(Mockito.any())).willReturn(alex);
 
-        mvc.perform(post("/api/employees").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(alex))).andExpect(status().isCreated()).andExpect(jsonPath("$.name", is("alex")));
+        mvc.perform(post("/api/TUnixServers").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(alex))).andExpect(status().isCreated()).andExpect(jsonPath("$.name", is("alex")));
         verify(service, VerificationModeFactory.times(1)).save(Mockito.any());
         reset(service);
     }
 
     @Test
-    public void givenEmployees_whenGetEmployees_thenReturnJsonArray() throws Exception {
+    public void givenTUnixServers_whenGetTUnixServers_thenReturnJsonArray() throws Exception {
         TUnixServer alex = new TUnixServer("alex");
         TUnixServer john = new TUnixServer("john");
         TUnixServer bob = new TUnixServer("bob");
 
-        List<TUnixServer> allEmployees = Arrays.asList(alex, john, bob);
+        List<TUnixServer> allTUnixServers = Arrays.asList(alex, john, bob);
 
-        given(service.findAll()).willReturn(allEmployees);
+        given(service.findAll()).willReturn(allTUnixServers);
 
-        mvc.perform(get("/api/employees").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3))).andExpect(jsonPath("$[0].name", is(alex.getServeurunix()))).andExpect(jsonPath("$[1].name", is(john.getServeurunix())))
+        mvc.perform(get("/api/TUnixServers").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3))).andExpect(jsonPath("$[0].name", is(alex.getServeurunix()))).andExpect(jsonPath("$[1].name", is(john.getServeurunix())))
                 .andExpect(jsonPath("$[2].name", is(bob.getServeurunix())));
         verify(service, VerificationModeFactory.times(1)).findAll();
         reset(service);

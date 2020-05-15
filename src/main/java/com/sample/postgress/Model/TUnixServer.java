@@ -6,17 +6,16 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "tserveurunix")
+@Table(name = "tunixserver")
 public class TUnixServer extends AuditModel {
 
 
-
     @Id
-    @GeneratedValue(generator = "serveurunix_generator")
+    @GeneratedValue(generator = "tunixserver_generator")
     @SequenceGenerator(
-            name = "serveurunix_generator",
-            sequenceName = "serveurunix_sequence",
-            initialValue = 1000
+            name = "tunixserver_generator",
+            sequenceName = "tunixserver_sequence"//,
+       //     initialValue = 1000
     )
     private Long id;
     @NotBlank
@@ -25,12 +24,10 @@ public class TUnixServer extends AuditModel {
     @Column(columnDefinition = "text")
     private String serveurunix;
 
-
-
     public TUnixServer() {
     }
 
-    public TUnixServer(String tUnixServeur) {
+   public TUnixServer(String serveurunix) {
         this.serveurunix = serveurunix;
     }
 

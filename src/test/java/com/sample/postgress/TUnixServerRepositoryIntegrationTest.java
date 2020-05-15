@@ -6,6 +6,7 @@ import com.sample.postgress.Repositoy.TUnixServerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TUnixServerRepositoryIntegrationTest {
 
     @Autowired
@@ -59,20 +61,20 @@ public class TUnixServerRepositoryIntegrationTest {
     }
 
     @Test
-    public void givenSetOfEmployees_whenFindAll_thenReturnAllEmployees() {
-        TUnixServer Serveur0 = new TUnixServer("Serveur0");
+    public void givenSetOfTUnixServer_whenFindAll_thenReturnAllTUnixServer() {
+        TUnixServer alex = new TUnixServer("alex");
         TUnixServer ron = new TUnixServer("ron");
         TUnixServer bob = new TUnixServer("bob");
 
-        entityManager.persist(Serveur0);
+        entityManager.persist(alex);
         entityManager.persist(bob);
         entityManager.persist(ron);
         entityManager.flush();
 
-        List<TUnixServer> allEmployees = tUnixServerRepository.findAll();
+        List<TUnixServer> allTUnixServer = tUnixServerRepository.findAll();
 
-        assertThat(allEmployees).hasSize(3).extracting(TUnixServer::getServeurunix).containsOnly(
-                Serveur0.getServeurunix(),
+        assertThat(allTUnixServer).hasSize(3).extracting(TUnixServer::getServeurunix).containsOnly(
+                alex.getServeurunix(),
                 ron.getServeurunix(),
                 bob.getServeurunix());
     }

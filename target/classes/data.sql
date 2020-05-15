@@ -61,11 +61,11 @@ values (4000, '2030-03-19 10:20:46.017000', '2030-03-19 10:20:46.017000', 'execu
 
 
 
-insert into tserveurunix (id, created_at, updated_at, serveurunix)
-values (1000, '2030-03-19 10:20:46.017000', '2030-03-19 10:20:46.017000', 'Serveur1');
+insert into tunixserver (id, created_at, updated_at, serveurunix)
+values (1, '2030-03-19 10:20:46.017000', '2030-03-19 10:20:46.017000', 'Serveur1');
 
-insert into tserveurunix (id, created_at, updated_at, serveurunix)
-values (2000, '2030-03-19 10:20:46.017000', '2030-03-19 10:20:46.017000', 'Serveur2');
+insert into tunixserver (id, created_at, updated_at, serveurunix)
+values (2, '2030-03-19 10:20:46.017000', '2030-03-19 10:20:46.017000', 'Serveur2');
 
 
 

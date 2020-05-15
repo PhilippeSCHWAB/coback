@@ -1,5 +1,6 @@
 package com.sample.postgress.service;
 
+import com.sample.postgress.Employee;
 import com.sample.postgress.Model.TUnixServer;
 import com.sample.postgress.Repositoy.TUnixServerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,53 +16,53 @@ import java.util.Optional;
 public class TUnixServerServiceImpl implements TUnixServerService {
 
     @Autowired
-    private TUnixServerRepository tserveurunixRepository;
+    private TUnixServerRepository tUnixServerRepository;
 
 
     //constructor
     public TUnixServerServiceImpl() {
-        this.tserveurunixRepository = tserveurunixRepository;
+        this.tUnixServerRepository = tUnixServerRepository;
     }
 
     @Override
     public List<TUnixServer> findAll() {
-        return tserveurunixRepository.findAll();
+        return tUnixServerRepository.findAll();
     }
-
+/*
     @Override
     public Optional<TUnixServer> FilteredUser(Long tid) {
         return tserveurunixRepository.findById(tid);
-    }
-
+    }*/
+/*
     @Override
     public ResponseEntity<TUnixServer> updateTServeurUnix(Long id, TUnixServer tserveurunixToUpdate) {
         return null;
     }
-
+*/
     @Override
     public void delete(Long tid) {
         System.out.println("'dfdfdfd'");
-        tserveurunixRepository.deleteById(tid);
+        tUnixServerRepository.deleteById(tid);
     }
 
     @Override
-    public TUnixServer save(TUnixServer tserveurunix) {
-        return tserveurunixRepository.save(tserveurunix);
+    public TUnixServer save(TUnixServer tUnixServer) {
+        return tUnixServerRepository.save(tUnixServer);
     }
 
     @Override
-    public List<String> getServeurunix() {
-        return tserveurunixRepository.findAllServeurunix();
+    public List<String> getUnixServerOnly() {
+        return tUnixServerRepository.findAllServeurunix();
     }
 
     @Override
-    public TUnixServer getTUnixServerByName(String tserveurunix) {
-        return tserveurunixRepository.findByserveurunix(tserveurunix);
+    public TUnixServer getTUnixServerByName(String tUnixServer) {
+        return tUnixServerRepository.findByserveurunix(tUnixServer);
     }
 
     @Override
     public boolean exists(String tserveurunix) {
-        if (tserveurunixRepository.findByserveurunix(tserveurunix) != null) {
+        if (tUnixServerRepository.findByserveurunix(tserveurunix) != null) {
             return true;
         }
         return false;
@@ -69,8 +70,14 @@ public class TUnixServerServiceImpl implements TUnixServerService {
 
     @Override
     public TUnixServer getTUnixServerById(Long id) {
-        return tserveurunixRepository.findById(id).orElse(null);
+        return tUnixServerRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public List<TUnixServer> getAllTUnixServers() {
+        return tUnixServerRepository.findAll();
+    }
+
 
 
 }

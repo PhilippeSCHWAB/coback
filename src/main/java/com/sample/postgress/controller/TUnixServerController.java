@@ -6,6 +6,7 @@
 package com.sample.postgress.controller;
 
 
+import com.sample.postgress.Employee;
 import com.sample.postgress.Model.TUnixServer;
 
 import com.sample.postgress.service.TUnixServerService;
@@ -20,50 +21,60 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/serveurunix")
 @CrossOrigin("http://localhost:4200")
-public class TUnixServerController<tserveurUnixId> {
+public class TUnixServerController<tUnixServerId> {
 
 
 
     @Autowired
-    private com.sample.postgress.Repositoy.TUnixServerRepository TServeurUnixRepository;
+    private com.sample.postgress.Repositoy.TUnixServerRepository TUnixServerRepository;
 
 
     @Resource
-    TUnixServerService tserveurunixService;
+    TUnixServerService tUnixServerService;
 
-
+    /**
+     * Get de list table unixserveur for form tunixserver >
+     */
     @GetMapping
-    public List<TUnixServer> getTServeurUnix(){
-        System.out.println("get sur serveurunix");
-        return tserveurunixService.findAll();
+    public List<TUnixServer> getTUnixServer(){
+        System.out.println("get sur TunixServer");
+        return tUnixServerService.findAll();
     }
 
 
     @PostMapping
-    public TUnixServer createTServeurUnix(@Valid @RequestBody TUnixServer tserveurunix) {
-        System.out.println("post sur tserveurunix : " + tserveurunix);
-        return tserveurunixService.save(tserveurunix);
+    public TUnixServer create(@Valid @RequestBody TUnixServer tUnixServer) {
+        System.out.println("post sur TunixServer : " + tUnixServer);
+        return tUnixServerService.save(tUnixServer);
     }
 
 
 
     @PutMapping("/{tserveurUnixId}")
-    public TUnixServer saveTServeurUnix(@Valid @RequestBody TUnixServer tserveurUnixServer){
-        return tserveurunixService.save(tserveurUnixServer);
+    public TUnixServer save(@Valid @RequestBody TUnixServer tUnixServer){
+        return tUnixServerService.save(tUnixServer);
     }
 
 
 
+    /**
+     * Get de list of only name unixserveur for form create user >
+     */
     @GetMapping("/serveurunix")
-    public List<String> getServeurunix() {
-        return (this.tserveurunixService.getServeurunix());
+    public List<String> getUnixServerListOnly() {
+        return (this.tUnixServerService.getUnixServerOnly());
     }
 
 
     @DeleteMapping("/{tid}")
     public void delete(@PathVariable Long tid){
         System.out.println("delete sur entity : " + tid);
-        this.tserveurunixService.delete(tid);
+        this.tUnixServerService.delete(tid);
+    }
+
+    @GetMapping("/serveurunx")
+    public List<TUnixServer> getAllTUnixServers() {
+        return tUnixServerService.getAllTUnixServers();
     }
 
 }

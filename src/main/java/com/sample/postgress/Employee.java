@@ -1,5 +1,7 @@
 package com.sample.postgress;
 
+import com.sample.postgress.Model.AuditModel;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "person")
-public class Employee {
+public class Employee extends AuditModel   {
 
     public Employee() {
     }

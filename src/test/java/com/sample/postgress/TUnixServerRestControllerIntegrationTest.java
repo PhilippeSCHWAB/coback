@@ -31,7 +31,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = PostgressApplication.class)
-@AutoConfigureMockMvc 
+@AutoConfigureMockMvc
 // @TestPropertySource(locations = "classpath:application-integrationtest.properties")
 @AutoConfigureTestDatabase
 public class TUnixServerRestControllerIntegrationTest {
@@ -63,12 +63,12 @@ public class TUnixServerRestControllerIntegrationTest {
 
         // @formatter:off
         mvc.perform(get("/api/serveurunix").contentType(MediaType.APPLICATION_JSON))
-          .andDo(print())
-          .andExpect(status().isOk())
-          .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2))))
-          .andExpect(jsonPath("$[0].serveurunix", is("bob")))
-          .andExpect(jsonPath("$[1].serveurunix", is("alex")));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2))))
+                .andExpect(jsonPath("$[0].serveurunix", is("bob")))
+                .andExpect(jsonPath("$[1].serveurunix", is("alex")));
         // @formatter:on
     }
 
